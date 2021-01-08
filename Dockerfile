@@ -23,7 +23,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     zsh \
     bc \
-    wget
+    wget \
+    vim
 
 RUN pecl install pcov
 
