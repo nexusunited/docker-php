@@ -1,2 +1,4 @@
-# docker-php
-Docker container for php 
+# php container for docker
+
+
+The container are used for local basic-docker development or ci pipelines

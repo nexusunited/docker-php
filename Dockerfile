@@ -1,6 +1,6 @@
 FROM php:7.2-fpm-buster
 
-COPY docker/php/php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
+COPY php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
 
 RUN apt-get update && apt-get install -y \
     gnupg \
@@ -27,13 +27,19 @@ RUN apt-get update && apt-get install -y \
 
 RUN pecl install pcov
 
-RUN docker-php-ext-configure gd --with-jpeg --with-freetype \
-    docker-php-ext-configure soap --enable-soap \
-    && docker-php-ext-install soap pdo pdo_mysql \
+RUN docker-php-ext-configure soap --enable-soap \
+    && docker-php-ext-install \
+        soap \
+        pdo \
+        pdo_mysql \
+        zip \
+        xsl \
+        gd \
+        intl \
+        opcache \
+        exif \
+        mbstring  \
     && docker-php-ext-enable pcov
-
-RUN docker-php-ext-install \
-    pdo pdo_mysql zip xsl gd intl opcache exif mbstring
     
 # Set TIMEZONE
 RUN rm /etc/localtime \
